@@ -1,7 +1,7 @@
 # 云崽Bot账号管理插件(js插件)
 
 #### 介绍
-改写自[BeterKing](https://gitee.com/zhxhx)的[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
+[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
 
 个人只改动了账号管理.js,其他内容和原项目一致
 
