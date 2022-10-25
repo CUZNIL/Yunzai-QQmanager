@@ -2,7 +2,7 @@
 @硫酸钡Barite ： 出于个人需要改写了很多内容
 项目原地址https://gitee.com/zhxhx/Yunzai-Bot-js/
 项目改版地址https://gitee.com/CUZNIL/Yunzai-QQmanager/
-最后一次编辑于2022年10月25日19:44:04
+最后一次编辑于2022年10月25日20:28:10
 //*/
 import fs from 'node:fs'
 import YAML from 'yaml'
@@ -68,7 +68,7 @@ export class zhanghao extends plugin {
 
   async change () {
     if (!fs.existsSync(`${this._path}/resources/Default.yaml`)){
-      this.reply("我去，你有没有好好看安装教程啊？\n帐号管理.js放plugins/example/里面；\nDefault.yaml放recourses/里面；\ncheckonline.js放lib/event/里面。\n听不懂啥意思的话好好去看看原项目git页！")
+      this.reply("我去，你有没有好好看安装教程啊？\nQQmanager.js放plugins/example/里面；\nDefault.yaml放recourses/里面；\ncheckonline.js放lib/event/里面。\n听不懂啥意思的话好好去看看原项目git页！")
       return true
     }
     let deFault =fs.readFileSync(`${this._path}/resources/Default.yaml`,'utf-8')
