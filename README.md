@@ -2,13 +2,14 @@
 
 #### 介绍
 改写自[BeterKing](https://gitee.com/zhxhx)的[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
-只改动了账号管理.js,其他内容和原项目一致
+
+个人只改动了账号管理.js,其他内容和原项目一致
 
 
 #### 安装教程
 
 0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
-1.  将`帐号管理.js`文件放入`Yunzai-Bot/plugins/example/`文件夹下
+1.  将[`帐号管理.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86.js)文件放入`Yunzai-Bot/plugins/example/`文件夹下
 -  如果你已经正确装载了[原项目](https://gitee.com/zhxhx)的插件，至此安装已经结束。
 2.  将`Default.yaml`文件放入`Yunzai-Bot/recourses`文件夹下
 3.  将`checkonline.js`文件放入`Yunzai-Bot/lib/event`文件夹下
