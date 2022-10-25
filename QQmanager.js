@@ -1,6 +1,8 @@
 /*
-@硫酸钡Barite注 出于个人需要改写了很多内容
+@硫酸钡Barite ： 出于个人需要改写了很多内容
 项目原地址https://gitee.com/zhxhx/Yunzai-Bot-js/
+项目改版地址https://gitee.com/CUZNIL/Yunzai-QQmanager/
+最后一次编辑于2022年10月25日19:35:18
 //*/
 import fs from 'node:fs'
 import YAML from 'yaml'
