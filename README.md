@@ -1,12 +1,12 @@
 # 云崽Bot账号管理插件(js插件)
 
-#### 介绍
+### 介绍
 [账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
 
 个人只改动了账号管理.js,其他内容和原项目一致
 
 
-#### 安装教程
+### 安装教程
 
 0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
 1.  将[`QQmanager.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86.js)文件放入`Yunzai-Bot/plugins/example/`文件夹下
@@ -16,7 +16,7 @@
 4.  重启Yunzai-Bot
 - 提示：如果不知道如何执行放文件这个操作，可以百度。
 
-#### 使用说明
+### 使用说明
 
 账号切换：`^(#|(确认))切换(\\d)+$`。
 
@@ -29,12 +29,16 @@
 设置下线自动替换：`^#设置替换(开启|关闭)$`。
 
 看不懂正则挺正常，下面说点人话举点例子。如果图片没能正确加载请点击此处
-- 配置新账号
+#### 配置新账号
 ![配置新账号](doc-use/%E9%85%8D%E7%BD%AE%E6%96%B0%E8%B4%A6%E5%8F%B7.png)
-- 查看已配置账号
-![查看已配置账号](doc-use/#%E6%9F%A5%E7%9C%8B.png)
+#### 查看已配置账号
+![查看已配置账号](doc-use/%E6%9F%A5%E7%9C%8B.png)
+#### 删除账号
+![删除账号](doc-use/%E5%88%A0%E9%99%A4%E8%B4%A6%E5%8F%B7.png)
+#### 主动切换账号
+![主动切换账号](doc-use/%E4%B8%BB%E5%8A%A8%E5%88%87%E6%8D%A2%E8%B4%A6%E5%8F%B7.png)
 
-#### 我到底改了啥？
+### 我到底改了啥？
 
 首先再强调一下原地址[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)
 
@@ -55,7 +59,7 @@
 - 删除了私聊使用对应命令时的提示 _删除原因：我的bot为了避免无端封号很早就 **禁用私聊** 了，我建议你们也这么做。_
 7.  可能还有别的改了，忘了。但是忘了就是说明不重要，如果你很在意可以去啃代码~
 
-#### 遇到问题/需要联系我/需要使用Bot
+### 遇到问题/需要联系我/需要使用Bot
 
 群号 **638077675** 
 
