@@ -1,22 +1,18 @@
-# 云崽Bot账号管理插件.js
+# 云崽Bot账号管理插件(js插件)
 
 #### 介绍
-改写自[BeterKing](https://gitee.com/zhxhx)的[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。
-
-懒得写README了，忙着搬砖。
-把这个项目下的账号管理.js替换掉原项目的就行了
-
-# 云崽Bot头衔插件(js插件)
-
-#### 介绍
-根据[xiaoxue-plugin](https://gitee.com/XueWerY/xiaoxue-plugin/blob/master/apps/givetitle.js)的给头衔功能改写，不依赖于原插件，适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
+改写自[BeterKing](https://gitee.com/zhxhx)的[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
+只改动了账号管理.js,其他内容和原项目一致
 
 
 #### 安装教程
 
 0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
-1.  将`giveTitle.js`文件放入`Yunzai-Bot/plugins/example`文件夹下
-2.  重启Yunzai-Bot
+1.  将`帐号管理.js`文件放入`Yunzai-Bot/plugins/example/`文件夹下
+-  如果你已经正确装载了[原项目](https://gitee.com/zhxhx)的插件，至此安装已经结束。
+2.  将`Default.yaml`文件放入`Yunzai-Bot/recourses`文件夹下
+3.  将`checkonline.js`文件放入`Yunzai-Bot/lib/event`文件夹下
+4.  重启Yunzai-Bot，
 
 #### 使用说明
 
