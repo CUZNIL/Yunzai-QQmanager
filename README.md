@@ -13,7 +13,8 @@
 -  如果你已经正确装载了[原项目](https://gitee.com/zhxhx)的插件，至此安装已经结束。
 2.  将[`Default.yaml`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/Default.yaml)文件放入`Yunzai-Bot/recourses`文件夹下
 3.  将[`checkonline.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/checkonline.js)文件放入`Yunzai-Bot/lib/event`文件夹下
-4.  重启Yunzai-Bot，
+4.  重启Yunzai-Bot
+- 提示：如果不知道如何执行放文件这个操作，可以百度。
 
 #### 使用说明
 
