@@ -31,7 +31,7 @@
 
 设置下线自动替换：`^#设置替换(开启|关闭)$`。
 
-看不懂正则挺正常，下面说点人话举点例子。如果图片没能正确加载请点击此处
+看不懂正则挺正常，下面说点人话举点例子。如果图片没能正确加载请[点击此处](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/doc-use/%E6%BC%94%E7%A4%BA%E7%94%A8%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95.txt)
 #### 配置新账号
 ![配置新账号](doc-use/%E9%85%8D%E7%BD%AE%E6%96%B0%E8%B4%A6%E5%8F%B7.png)
 #### 查看已配置账号
@@ -69,4 +69,4 @@
 
 答案  **火花骑士** 
 
-![群](use_in_README.md/group.png)
+![群](doc-use/QQ%E7%BE%A4.png)
