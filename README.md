@@ -18,27 +18,10 @@
 
 #### 使用说明
 
-索要专属头衔：`#?((我要|(给|赐|赠|赏|送)(我|咱|朕|俺|愚|私|吾|鄙|敝|卑|爹|娘|爸|妈|爷|奶|哥|姐|弟|妹)))?头衔(.)*$`
-
-取消专属头衔：`#?(我不要|取消|撤销|删除)头衔了?$`
-
-考虑到正则不是人看的，这里列举说明一下 **命令使用方式** ：
-
-首先是设置头衔的例子
-
-![设置头衔](use_in_README.md/%E8%AE%BE%E7%BD%AE%E5%A4%B4%E8%A1%94.png)
-
-如果图片没能正确加载请[点击此处](https://gitee.com/CUZNIL/Yunzai-giveTitle/blob/master/use_in_README.md/%E8%AE%BE%E7%BD%AE%E5%A4%B4%E8%A1%94%E7%94%A8%E6%B3%95%E4%BE%8B.md)
-
-然后是撤销头衔的例子
-
-![撤销头衔](use_in_README.md/%E6%92%A4%E9%94%80%E5%A4%B4%E8%A1%94.png)
-
-如果图片没能正确加载请[点击此处](https://gitee.com/CUZNIL/Yunzai-giveTitle/blob/master/use_in_README.md/%E6%92%A4%E9%94%80%E5%A4%B4%E8%A1%94%E7%94%A8%E6%B3%95%E4%BE%8B.md)
 
 #### 我到底改了啥？
 
-首先再强调一下原地址[小雪插件](https://gitee.com/XueWerY/xiaoxue-plugin/blob/master/apps/givetitle.js)
+首先再强调一下原地址[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)
 
 1.  让 **命令匹配** 更人性化了，加了一堆正则和几个函数
 2.  删去了原插件的 **小雪等级** 判定`getXiaoxuePermissionLevel` _删除原因：个人不需要这层限制_ 
