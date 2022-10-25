@@ -41,7 +41,8 @@
 #### 主动切换账号
 ![主动切换账号](doc-use/%E4%B8%BB%E5%8A%A8%E5%88%87%E6%8D%A2%E8%B4%A6%E5%8F%B7.png)
 ![切换失败提示](doc-use/%E5%88%87%E6%8D%A2%E5%A4%B1%E8%B4%A5%E6%8F%90%E7%A4%BA.png)
-
+#### 自动替换账号
+![自动替换账号](doc-use/%E8%87%AA%E5%8A%A8%E6%9B%BF%E6%8D%A2.png)
 ### 我到底改了啥？
 
 首先再强调一下原地址[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)
