@@ -27,15 +27,23 @@ export default class onlineEvent extends EventListener {
         let deFault = fs.readFileSync(`${_path}/resources/Default.yaml`, 'utf-8')
         for (let i in asd) {
             if (fs.existsSync(`${_path}/data/${asd[i].qq[0]}/token`)) {
-                changed = true
                 deFault = deFault.replace(/qq:/g, 'qq: ' + asd[i].qq[0])
                 deFault = deFault.replace(/pwd:/g, `pwd:  '${asd[i].pw}'`)
                 deFault = deFault.replace(/platform:/g, 'platform: ' + asd[i].plat[0])
-                //修改了代码，仅当能查找到有token的账号时覆盖qq.yaml，否则不切换直接重启
                 fs.writeFileSync(`${_path}/config/config/qq.yaml`, deFault, 'utf8')
                 break
             }
         }
+        /*
+        2022年10月30日13:42:26
+        修改了代码，仅当能查找到有token的账号时覆盖qq.yaml，否则不切换账号直接重启
+        这样做的目的是避免
+            网络抖动导致所有账号都没有token时
+            原代码会导致覆盖空账号
+            让Bot主人感到很蒙蔽然后发现控制台提示登录新账号
+        的问题。
+        原文件：https://gitee.com/zhxhx/Yunzai-Bot-js/blob/main/%E5%B8%90%E5%8F%B7%E7%AE%A1%E7%90%86/checkonline.js
+        //*/
         console.log("开始重启")
         await redis.set(this.key, '1')
         exec(cm, { windowsHide: true }, (error, stdout, stderr) => {
