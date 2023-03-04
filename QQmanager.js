@@ -6,8 +6,13 @@
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023-3-5 01:18:38
+此js最后一次编辑于2023-3-5 02:32:13
 //*/
+
+import { segment } from "oicq";
+import fetch from "node-fetch";
+import lodash from 'lodash'
+
 import fs from 'node:fs'
 import YAML from 'yaml'
 import { Restart } from '../other/restart.js'
@@ -42,6 +47,11 @@ export class zhanghao extends plugin {
         {
           reg: '^#查看$',
           fnc: 'check',
+          permission: 'master'
+        },
+        {
+          reg: '^#权重查看$',
+          fnc: 'checkweight',
           permission: 'master'
         },
         {
@@ -188,9 +198,28 @@ platform:
     let msg = []
     let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
     for (let i in this.asd) {
-      msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token" : "无token，请谨慎切换"}`)
+      msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}`)
     }
     msg.push(`切换账号的指令是#切换+数字\n非账号封禁导致的token消失一般可以正常切换\n更多指令回复#账号管理帮助 获取`)
+    let forward = await this.makeForwardMsg(Bot.uin, title, msg)
+    this.reply(forward)
+  }
+
+  async checkweight() {
+    //依然是查看，但是带权重。请不要频繁使用，嫖个接口不容易。
+    let msg = []
+    let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
+    for (let i in this.asd) {
+      let url = `http://tc.tfkapi.top/API/qqqz.php?type=json&qq=${this.asd[i].qq[0]}`;
+      let response = await fetch(url);
+      let res = await response.json();
+      if (segment.text(res.msg) == "查询成功") {
+        this.reply("似乎无法访问到API，请使用#查看。")
+        return false
+      }
+      msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}权重为${res.qz}。`)
+    }
+    msg.push(`切换账号的指令是#切换+数字\n非账号封禁导致的token消失一般可以正常切换\n权重越低越容易封号，权重低时别涩涩啦！\n更多指令回复#账号管理帮助 获取`)
     let forward = await this.makeForwardMsg(Bot.uin, title, msg)
     this.reply(forward)
   }
@@ -300,8 +329,8 @@ platform:
   async uninstallALL() {
     this.reply("非常抱歉，还没写完orz")
   }
-  
-  
+
+
   async uninstall() {
     this.reply("非常抱歉，还没写完呜呜呜")
   }
@@ -315,7 +344,7 @@ platform:
         nickname: "增删"
       },
       {
-        message: `#查看\n查看已添加的马甲`,
+        message: `#查看 #权重查看\n查看已添加的马甲，后者带权重（可能无法访问API）`,
         user_id: Bot.uin,
         nickname: "查"
       },
