@@ -41,19 +41,13 @@ curl -O https://gitee.com/CUZNIL/Yunzai-QQmanager/raw/master/QQmanager.js
 
 ### 使用说明
 
-发送`#账号管理帮助`即可获取帮助信息。
+ **发送`#账号管理帮助`即可获取帮助信息。** 
 
-配置新账号(请私聊使用)：`^#配置$`，中途可以使用“结束”来中断配置流程。
+![输入图片说明](doc-use/imageqwd984d.png)
 
-查看已配置账号：`^#查看$`。
+以下是具体使用例:
 
-删除账号：`^#删除配置(\\d)+$`。
-
-账号切换：`^(#|(确认))切换(\\d)+$`。
-
-设置下线自动替换：`^#设置替换(开启|关闭)$`。
-
-看不懂正则挺正常，下面说点人话举点例子。如果图片没能正确加载请[点击此处](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/doc-use/%E6%BC%94%E7%A4%BA%E7%94%A8%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95.txt)
+如果图片没能正确加载请[点击此处](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/doc-use/%E6%BC%94%E7%A4%BA%E7%94%A8%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95.txt)
 #### 配置新账号
 ![配置新账号](doc-use/%E9%85%8D%E7%BD%AE%E6%96%B0%E8%B4%A6%E5%8F%B7.png)
 #### 查看已配置账号
