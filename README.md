@@ -1,20 +1,23 @@
 # 云崽Bot账号管理插件(js插件)
 
 ### 介绍
-[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)，针对[网络抖动造成的token丢失问题](https://gitee.com/zhxhx/Yunzai-Bot-js/issues/I5VXKA)作出了临时解决，并大量优化了使用体验。该插件适用于[Yunzai-Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
+[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)。
+
+该插件适用于[Yunzai-Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)
+
+目前适配了使用[icqq协议的云崽](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)，建议所有人尽早换源。不会换可以看我的[云崽安装教程](https://gitee.com/CUZNIL/Yunzai-install/)。
 
 
 ### 安装教程
 
-0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/Le-niao/Yunzai-Bot)
+0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)
 1.  将[`QQmanager.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/QQmanager.js)文件放入`Yunzai-Bot/plugins/example/`文件夹下
-2.  将[`checkonline.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/checkonline.js)文件放入`Yunzai-Bot/lib/events`文件夹下
--  如果你已经正确装载了[原项目](https://gitee.com/zhxhx)的插件，再删除[`账号管理.js`](https://gitee.com/zhxhx/Yunzai-Bot-js/blob/main/%E5%B8%90%E5%8F%B7%E7%AE%A1%E7%90%86/%E5%B8%90%E5%8F%B7%E7%AE%A1%E7%90%86.js)即宣告安装结束。
-3.  将[`Default.yaml`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/Default.yaml)文件放入`Yunzai-Bot/recourses`文件夹下
-4.  重启Yunzai-Bot
+
 - 提示：如果不知道如何执行放文件这个操作，可以百度。
 
 ### 使用说明
+
+发送`#账号管理帮助`即可获取帮助信息。
 
 配置新账号(请私聊使用)：`^#配置$`，中途可以使用“结束”来中断配置流程。
 
@@ -23,9 +26,6 @@
 删除账号：`^#删除配置(\\d)+$`。
 
 账号切换：`^(#|(确认))切换(\\d)+$`。
-
-
-
 
 设置下线自动替换：`^#设置替换(开启|关闭)$`。
 
