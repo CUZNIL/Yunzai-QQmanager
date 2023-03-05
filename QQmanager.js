@@ -1,12 +1,12 @@
 /*
 发送 #账号管理帮助 获取详细帮助
-项目原地址https://gitee.com/zhxhx/Yunzai-Bot-js/ （貌似关闭了，不过本js大量代码都是他写的，特别注明下。）
+项目原地址https://gitee.com/zhxhx/Yunzai-Bot-js/ （貌似关闭了，不过本js大量代码都是他写的，我只是添砖加瓦，特别注明下。）
 项目改版地址https://gitee.com/CUZNIL/Yunzai-QQmanager/
 如果该插件失效，前往改版地址获取最新版，如果依旧失效请提交issue。
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023-3-5 02:32:13
+此js最后一次编辑于2023年3月5日21:32:48
 //*/
 
 import { segment } from "oicq";
@@ -61,12 +61,12 @@ export class zhanghao extends plugin {
         },
         {
           reg: '^卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml$',
-          fnc: 'uninstallALL',
+          fnc: 'uninstall',
           permission: 'master'
         },
         {
           reg: '^完全卸载账号管理插件$',
-          fnc: 'uninstall',
+          fnc: 'uninstallALL',
           permission: 'master'
         },
         {
@@ -79,80 +79,14 @@ export class zhanghao extends plugin {
     let yaml = []
     this._path = process.cwd()
     /** 生成bot.yaml文件存储帐号数据 */
-    if (!fs.existsSync(`${this._path}/resources/QQmanager`)) {
+    if (!fs.existsSync(`${this._path}/lib/events/checkonline.js`)) {
       First_Run = true
-      fs.mkdirSync(`${this._path}/resources/QQmanager`)
-      fs.writeFileSync(`${this._path}/resources/QQmanager/bot.yaml`, YAML.stringify(yaml), 'utf8')
-      fs.writeFileSync(`${this._path}/resources/QQmanager/Default.yaml`,
-        `# qq账号
-qq:
-# 密码，为空则用扫码登录,扫码登录现在仅能在同一ip下进行
-pwd:
-# 1:安卓手机、 2:aPad 、 3:安卓手表、 4:MacOS 、 5:iPad
-platform:
-`, 'utf8')
-      fs.writeFileSync(`${this._path}/lib/events/checkonline.js`,
-        `import EventListener from '../listener/listener.js'
-      import fs from 'node:fs'
-      import { createRequire } from 'module'
-      import YAML from 'yaml'
-      
-      
-      let _path = process.cwd()
-      const require = createRequire(import.meta.url)
-      const { exec } = require('child_process')
-      
-      export default class onlineEvent extends EventListener {
-          constructor() {
-              super({ event: 'system.offline' })
-              this.key = 'restart'
-              this.keys = 'setrestart'
-          }
-      
-      
-          /** 默认方法 */
-          async execute(e) {
-              let setrestart = await redis.get(this.keys)
-              if (!setrestart) {
-                  return true
-              }
-              let cm = 'npm run restart'
-              let asd = this.get('bot')
-              let deFault = fs.readFileSync(\`${_path}/resources/QQmanager/Default.yaml\`, 'utf-8')
-              for (let i in asd) {
-                  if (fs.existsSync(\`${_path}/data/${asd[i].qq[0]}/token\`)) {
-                      deFault = deFault.replace(/qq:/g, 'qq: ' + asd[i].qq[0])
-                      deFault = deFault.replace(/pwd:/g, \`pwd:  '${asd[i].pw}'\`)
-                      deFault = deFault.replace(/platform:/g, 'platform: ' + asd[i].plat[0])
-                      fs.writeFileSync(\`${_path}/config/config/qq.yaml\`, deFault, 'utf8')
-                      break
-                  }
-              }
-              console.log("开始重启")
-              await redis.set(this.key, '1')
-              exec(cm, { windowsHide: true }, (error, stdout, stderr) => {
-                  if (error) {
-                      redis.del(this.key)
-                      logger.error(\`重启失败\n${error.stack}\`)
-                  } else if (stdout) {
-                      logger.mark('重启成功，运行已由前台转为后台')
-                      logger.mark('查看日志请用命令：npm run log')
-                      logger.mark('停止后台运行命令：npm stop')
-                      process.exit()
-                  }
-              })
-          }
-      
-          get(name) {
-              let file = \`${_path}/resources/QQmanager/${name}.yaml\`
-              let key = \`${name}\`
-              this[key] = YAML.parse(
-                  fs.readFileSync(file, 'utf8')
-              )
-              return this[key]
-          }
+      if (!fs.existsSync(`${this._path}/resources/QQmanager`)) {
+        fs.mkdirSync(`${this._path}/resources/QQmanager`)
+        fs.writeFileSync(`${this._path}/resources/QQmanager/bot.yaml`, YAML.stringify(yaml), 'utf8')
       }
-      `, 'utf8')
+      fs.writeFileSync(`${this._path}/resources/QQmanager/Default.yaml`, "# qq账号\nqq:\n# 密码，为空则用扫码登录,扫码登录现在仅能在同一ip下进行\npwd:\n# 1:安卓手机、 2:aPad 、 3:安卓手表、 4:MacOS 、 5:iPad\nplatform:\n", 'utf8')
+      fs.writeFileSync(`${this._path}/lib/events/checkonline.js`, "import EventListener from '../listener/listener.js'\nimport fs from 'node:fs'\nimport { createRequire } from 'module'\nimport YAML from 'yaml'\nlet _path = process.cwd()\nconst require = createRequire(import.meta.url)\nconst { exec } = require('child_process')\nexport default class onlineEvent extends EventListener {\n    constructor() {\n        super({ event: 'system.offline' })\n        this.key = 'restart'\n        this.keys = 'setrestart'\n    }\n\n\n    /** 默认方法 */\n    async execute(e) {\n        let setrestart = await redis.get(this.keys)\n        if (!setrestart) {\n            return true\n        }\n        let cm = 'npm run restart'\n        let asd = this.get('bot')\n        let deFault = fs.readFileSync(`${_path}/resources/QQmanager/Default.yaml`, 'utf-8')\n        for (let i in asd) {\n            if (fs.existsSync(`${_path}/data/${asd[i].qq[0]}/token`)) {\n                deFault = deFault.replace(/qq:/g, 'qq: ' + asd[i].qq[0])\n                deFault = deFault.replace(/pwd:/g, `pwd:  '${asd[i].pw}'`)\n                deFault = deFault.replace(/platform:/g, 'platform: ' + asd[i].plat[0])\n                fs.writeFileSync(`${_path}/config/config/qq.yaml`, deFault, 'utf8')\n                break\n            }\n        }\n        console.log(`开始重启`)\n        await redis.set(this.key, '1')\n        exec(cm, { windowsHide: true }, (error, stdout, stderr) => {\n            if (error) {\n                redis.del(this.key)\n                logger.error(`重启失败\n${error.stack}`)\n            } else if (stdout) {\n                logger.mark('重启成功，运行已由前台转为后台')\n                logger.mark('查看日志请用命令：npm run log')\n                logger.mark('停止后台运行命令：npm stop')\n                process.exit()\n            }\n        })\n    }\n\n    get(name) {\n        let file = `${_path}/resources/QQmanager/${name}.yaml`\n        let key = `${name}`\n        this[key] = YAML.parse(\n            fs.readFileSync(file, 'utf8')\n        )\n        return this[key]\n    }\n}\n", 'utf8')
     }
     this.asd = this.get('bot')
     this.key = 'restart'
@@ -326,14 +260,27 @@ platform:
   }
 
 
-  async uninstallALL() {
-    this.reply("非常抱歉，还没写完orz")
-  }
-
-
   async uninstall() {
-    this.reply("非常抱歉，还没写完呜呜呜")
+    await this.reply("好的！马上开始清理本js插件及其部分生成文件（保留账密信息）！清理后为了防止报错会进行一次重启！")
+    fs.rmSync(`${this._path}/resources/QQmanager/Default.yaml`)
+    fs.rmSync(`${this._path}/lib/events/checkonline.js`)
+    fs.rmSync(`${this._path}/plugins/example/QQmanager.js`)
+    await this.reply(`已卸载完成！根据你输入的指令为你在${this._path}/resources/QQmanager/bot.yaml保留了账密信息。\n如需再次下载可访问：https://gitee.com/CUZNIL/Yunzai-QQmanager/`)
+    setTimeout(() => this.restart(), 2000)
   }
+
+  async uninstallALL() {
+    await this.reply("好的！马上开始清理本js插件及其所有生成文件！清理后为了防止报错会进行一次重启！")
+    fs.rmSync(`${this._path}/resources/QQmanager/Default.yaml`)
+    fs.rmSync(`${this._path}/resources/QQmanager/bot.yaml`)
+    fs.rmdirSync(`${this._path}/resources/QQmanager`)
+    fs.rmSync(`${this._path}/lib/events/checkonline.js`)
+    fs.rmSync(`${this._path}/plugins/example/QQmanager.js`)
+    await this.reply(`已完全卸载！\n如需再次下载可访问：https://gitee.com/CUZNIL/Yunzai-QQmanager/`)
+    setTimeout(() => this.restart(), 2000)
+  }
+
+
 
 
   async help(e) {
@@ -359,7 +306,7 @@ platform:
         nickname: "自动替换"
       },
       {
-        message: `当你不想使用本插件时，请务必使用以下指令卸载本插件，以免后续BUG：\n如果需要在云崽目录保留你的所有账密信息，请发送“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”。\n如果需要完全卸载本插件，请发送“完全卸载账号管理插件”。为了方便手机端复制，下面俩条消息单独列出。`,
+        message: `当你不想使用本插件时，请务必使用以下指令卸载本插件（为避免BUG，卸载后会进行一次重启）：\n如果需要在云崽目录保留你的所有账密信息，请发送“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”。\n如果需要完全卸载本插件，请发送“完全卸载账号管理插件”。\n为了方便手机端复制，下面俩条消息单独列出。卸载时请确保本js插件是安装在plugins/example文件夹下。`,
         user_id: Bot.uin,
         nickname: "卸载建议"
       },
