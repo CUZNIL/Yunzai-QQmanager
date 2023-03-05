@@ -10,13 +10,34 @@
 
 ### 安装教程
 
-
  **目前已将安装过程整合到js插件内，直接安装js插件即可。** 
 
-0.  请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)
-1.  将[`QQmanager.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/QQmanager.js)文件放入`Yunzai-Bot/plugins/example/`文件夹下（ **尽量不要改名！** ）
+请确保你已经正确搭载了[云崽Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)。
 
-- 提示：如果不知道如何执行放文件这个操作，可以百度。
+
+将[`QQmanager.js`](https://gitee.com/CUZNIL/Yunzai-QQmanager/blob/master/QQmanager.js)文件放入`Yunzai-Bot/plugins/example/`文件夹下。
+
+<details><summary>不知道怎么放？</summary>
+
+首先进入云崽根目录。
+
+然后输入以下指令：
+
+进入js插件目录
+```
+cd plugins/example/
+```
+在此处下载本js插件
+```
+curl -O https://gitee.com/CUZNIL/Yunzai-QQmanager/raw/master/QQmanager.js
+```
+如图是参考的安装过程，如遇`xxx not found`报错请自己百度怎么处理。
+![输入图片说明](doc-use/imageqwdq894.png)
+
+———————————分割线———————————
+
+</details>
+
 
 ### 使用说明
 
