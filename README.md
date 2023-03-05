@@ -1,9 +1,10 @@
 # 云崽Bot账号管理插件(js插件)
 
 ### 介绍
-[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)。
 
-该插件适用于[Yunzai-Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)
+本插件用于管理你的多个BOT账号，支持掉线（封号）自动切换。
+
+[账号管理插件](https://gitee.com/zhxhx/Yunzai-Bot-js/)改写自[BeterKing](https://gitee.com/zhxhx)。该插件适用于[Yunzai-Bot v3](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)
 
 目前适配了使用[icqq协议的云崽](https://gitee.com/yoimiya-kokomi/Yunzai-Bot)，建议所有人尽早换源。不会换可以看我的[云崽安装教程](https://gitee.com/CUZNIL/Yunzai-install/)。
 
