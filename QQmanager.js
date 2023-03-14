@@ -6,7 +6,7 @@
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023年3月5日21:32:48
+此js最后一次编辑于2023年3月14日14:41:55
 //*/
 
 import { segment } from "oicq";
@@ -52,6 +52,11 @@ export class zhanghao extends plugin {
         {
           reg: '^#权重查看$',
           fnc: 'checkweight',
+          permission: 'master'
+        },
+        {
+          reg: '^#账密查看$',
+          fnc: 'checkpwd',
           permission: 'master'
         },
         {
@@ -137,6 +142,32 @@ export class zhanghao extends plugin {
     msg.push(`切换账号的指令是#切换+数字\n非账号封禁导致的token消失一般可以正常切换\n更多指令回复#账号管理帮助 获取`)
     let forward = await this.makeForwardMsg(Bot.uin, title, msg)
     this.reply(forward)
+  }
+
+  async checkpwd() {
+    //账密查看 如果是值得信赖的群聊不怕内鬼可以使用#账密查看确认
+    if (this.e.isGroup) {
+      this.reply("当前是群聊！你确定要向群友展示账密吗？回复“是”确认，回复“否”取消！")
+      this.setContext('checkpwdask')
+    } else {
+      this.checkpwdyes()
+    }
+  }
+
+  async checkpwdask() {
+    if (/^是$/.test(this.e.msg)) {
+      let msg = []
+      let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
+      for (let i in this.asd) {
+        msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}   ${this.asd[i].pw[0]}   。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}`)
+      }
+      msg.push(`如果是手贱触发，撤回防不了小人，安全起见建议改账密。`)
+      let forward = await this.makeForwardMsg(Bot.uin, title, msg)
+      this.reply(forward)
+    } else {
+      this.reply("润了润了")
+    }
+    this.finish('checkpwdask')
   }
 
   async checkweight() {
