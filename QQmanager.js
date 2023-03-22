@@ -6,7 +6,7 @@
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023年3月14日14:41:55
+此js最后一次编辑于2023年3月22日14:21:07
 //*/
 
 import { segment } from "oicq";
@@ -315,7 +315,7 @@ export class zhanghao extends plugin {
 
 
   async help(e) {
-    let msg = [
+    let forwardMsg = [
       {
         message: `#配置\n#删除配置 + 数字\n配置中间可以选择发送"结束"来结束配置。如是扫码登录的，配置密码时发送"无"。同时配置的帐号请注意要通过验证，即data文件下对应qq号有token文件。并且配置的设备请与通过验证时的设备保持一致，否则切换帐号时会直接掉线！`,
         user_id: Bot.uin,
@@ -357,7 +357,11 @@ export class zhanghao extends plugin {
         nickname: "插件地址"
       },
     ]
-    let forwardMsg = await e.group.makeForwardMsg(msg)
+    if (e.isGroup) {
+      forwardMsg = await e.group.makeForwardMsg(forwardMsg)
+    } else {
+      forwardMsg = await e.friend.makeForwardMsg(forwardMsg)
+    }
     forwardMsg.data = forwardMsg.data
       .replace(/\n/g, '')
       .replace(/<title color="#777777" size="26">(.+?)<\/title>/g, '___')
@@ -419,6 +423,3 @@ export class zhanghao extends plugin {
 
 
 }
-
-
-
