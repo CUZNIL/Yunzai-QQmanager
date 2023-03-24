@@ -6,7 +6,7 @@
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023年3月22日14:21:07
+此js最后一次编辑于2023年3月24日17:44:28
 //*/
 
 import { segment } from "oicq";
@@ -77,7 +77,6 @@ export class zhanghao extends plugin {
         {
           reg: '^#?账号?管理?(帮助)?$',
           fnc: 'help',
-          permission: 'master'
         }
       ]
     })
@@ -156,18 +155,22 @@ export class zhanghao extends plugin {
 
   async checkpwdask() {
     if (/^是$/.test(this.e.msg)) {
-      let msg = []
-      let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
-      for (let i in this.asd) {
-        msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}   ${this.asd[i].pw[0]}   。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}`)
-      }
-      msg.push(`如果是手贱触发，撤回防不了小人，安全起见建议改账密。`)
-      let forward = await this.makeForwardMsg(Bot.uin, title, msg)
-      this.reply(forward)
+      this.checkpwdyes()
     } else {
       this.reply("润了润了")
     }
     this.finish('checkpwdask')
+  }
+  
+  async checkpwdyes() {
+    let msg = []
+    let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
+    for (let i in this.asd) {
+      msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}   ${this.asd[i].pw[0]}   。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}`)
+    }
+    msg.push(`如果是手贱触发，撤回防不了小人，安全起见建议改账密。`)
+    let forward = await this.makeForwardMsg(Bot.uin, title, msg)
+    this.reply(forward)
   }
 
   async checkweight() {
@@ -357,6 +360,9 @@ export class zhanghao extends plugin {
         nickname: "插件地址"
       },
     ]
+    if (!this.e.isMaster) {
+      forwardMsg.push({ message: `温馨提示：你不是主人，你只能调用帮助哦~`, user_id: Bot.uin, nickname: "主人判定" })
+    }
     if (e.isGroup) {
       forwardMsg = await e.group.makeForwardMsg(forwardMsg)
     } else {
@@ -416,10 +422,7 @@ export class zhanghao extends plugin {
       .replace(/___+/, `<title color="#777777" size="26">${title}</title>`)
     return forwardMsg
   }
-
   restart() {
     new Restart(this.e).restart()
   }
-
-
 }
