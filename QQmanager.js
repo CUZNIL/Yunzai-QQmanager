@@ -6,10 +6,9 @@
 如果决定要卸载本插件，请不要单独删除本js，否则可能导致BOT无法正常响应消息！！！！！
 正确卸载姿势是对BOT说：“卸载账号管理插件，但是保留账密在/resources/QQmanager/bot.yaml”，这样插件会删除除了账密文件的所有该插件生成的文件（包括自身）。
 如果你账密不需要在云崽目录记录，卸载请发送“完全卸载账号管理插件”，这样插件会删除所有该插件生成的文件（包括自身）。
-此js最后一次编辑于2023年3月27日19:51:00
+此js最后一次编辑于2023年4月18日09:50:28
 //*/
 
-import { segment } from "oicq";
 import fetch from "node-fetch";
 import fs from 'node:fs'
 import YAML from 'yaml'
@@ -19,13 +18,14 @@ import cfg from '../../lib/config/config.js'
 let qq = 0
 let pw
 let First_Run = false
+let queryAPI = "http://tc.tfkapi.top/API/qqqz.php?type=json&qq="
 
 export class zhanghao extends plugin {
   constructor() {
     super({
       name: '帐号管理',
       event: 'message',
-      priority: 4000,
+      priority: 2333,
       rule: [
         {
           reg: '^(#|(确认))切换(\\d)+$',
@@ -159,7 +159,7 @@ export class zhanghao extends plugin {
     }
     this.finish('checkpwdask')
   }
-  
+
   async checkpwdyes() {
     let msg = []
     let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
@@ -176,14 +176,15 @@ export class zhanghao extends plugin {
     let msg = []
     let title = [`帐号如下:\n(当前帐号为${Bot.uin})`]
     for (let i in this.asd) {
-      let url = `http://tc.tfkapi.top/API/qqqz.php?type=json&qq=${this.asd[i].qq[0]}`;
-      let response = await fetch(url);
-      let res = await response.json();
-      if (segment.text(res.msg) == "查询成功") {
-        this.reply("似乎无法访问到API，请使用#查看。")
-        return false
+      let url = queryAPI.concat(this.asd[i].qq[0])
+      try {
+        let response = await fetch(url)
+        let res = await response.json()
+        msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}权重为${res.qz}。`)
+      } catch (e) {
+        console.error(e)
+        msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}权重查询接口访问失败。`)
       }
-      msg.push(`${parseInt(i) + 1}、${this.asd[i].qq[0]}。该账号${fs.existsSync(`${this._path}/data/${this.asd[i].qq[0]}_token`) ? "有token。" : "无token，请谨慎切换！"}权重为${res.qz}。`)
     }
     msg.push(`切换账号的指令是#切换+数字\n非账号封禁导致的token消失一般可以正常切换\n权重越低越容易封号，权重低时别涩涩啦！\n更多指令回复#账号管理帮助 获取`)
     let forward = await this.makeForwardMsg(Bot.uin, title, msg)
